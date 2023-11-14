@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_connexion.css">
+    <title>Connexion</title>
+</head>
+<body>
+    <div class="center">
+        <h1 class="title">Connexion</h1>
+
+        <form action="" method="post">
+            <div class="place">
+                <input type="text" name="" id="Mail" placeholder="Mail" onblur="testMail()">
+                
+            </div>
+            <div class="place">
+                <input type="password" name="" id="Password" placeholder="Mot de passe" onblur="testPassword()" >
+                
+            </div>
+            <div class="forget">Mot de passe oublié</div>
+            <input type="button" value="connexion" onclick="btn_valider()">
+            <br> <div class="login">Vous n'êtes pas inscrit ?<a href="inscription.html">Inscrivez-vous</a> </div>
+        </form>
+    </div>
+
+    <script language="javascript">
+        
+        function testMail(){
+            let Mail = new RegExp("^([a-z]+\\.{1}[a-z]+)([0-9]){2}(@inphb\\.{1}ci)$")
+            if (Mail.test(document.getElementById("Mail").value)){
+                correct(document.getElementById("Mail"))
+                return true
+            } else {
+                error(document.getElementById("Mail"))
+                return false
+            }
+        }
+        
+        
+        
+        function testPassword(){
+            if(document.getElementById("Password").value.length < 8){
+                error(document.getElementById("Password"))
+                return false
+            } else {
+                correct(document.getElementById("Password"))
+                return true
+            }
+        }
+        
+        function error(element){
+            element.setAttribute("placeholder","incorrect")
+            element.value = ""
+        }
+        
+        function correct(element){
+            element.style.border = "black"
+        }
+        
+        function btn_valider(){
+            if(testMail() && testPassword()){window.open("quiz.html");}
+            
+        }
+            </script>
+</body>
+</html>

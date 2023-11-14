@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_inscription.css">
+    <title>Inscription</title>
+    
+</head>
+
+<body>
+    
+    <div class="center">
+        <h1 class="title">Inscription</h1>
+
+        <form action="" >
+            <div class="place">
+                <input type="text" name="" id="" placeholder="Nom">
+            </div>
+            <div class="place">
+                <input type="text" name="" id="" placeholder="Prenom"> 
+            </div>
+            <div class="place">
+                <input type="txt"  id="Mat" placeholder="Matricule" onblur="testMaitricule()"> 
+            </div>
+            <div class="place">
+                <input type="email"  id="Mail" placeholder="E-mail" onblur="testMail()"> 
+            </div>
+            
+            <div class="place">
+                <input type="password" class="" id="Password" placeholder="Mot de passe" onblur="testPassword()"> 
+            </div>
+            <div class="classe">
+                <select name="" id="">
+                    <option style="text-align: center;" value="">TS INFO2</option>
+                    <option style="text-align: center;" value="">TS EIT2</option>
+                </select>
+            </div>
+            
+            <input type="submit" value="Inscription" onclick="btn_valider()">
+            <br> <div class="login">Vous êtes déja inscrit ?<a href="connexion.html" >Connectez-vous</a> </div>
+        </form>
+    </div>
+    <script language="javascript">
+        
+        function testMail(){
+            let Mail = new RegExp("^([a-z]+\\.{1}[a-z]+)([0-9]){2}(@inphb\\.{1}ci)$")
+            if (Mail.test(document.getElementById("Mail").value)){
+                correct(document.getElementById("Mail"))
+                return true
+            } else {
+                error(document.getElementById("Mail"))
+                return false
+            }
+        }
+        
+        function testMaitricule(){
+            let Mat = new RegExp('^([0-9]){2}INP(([0-9]){5})$');
+            if (Mat.test(document.getElementById("Mat").value)){
+                correct(document.getElementById("Mat"))
+                return true
+            } else {
+                error(document.getElementById("Mat"))
+                return false
+            }
+        }
+        
+        function testPassword(){
+            if(document.getElementById("Password").value.length < 8){
+                error(document.getElementById("Password"))
+                return false
+            } else {
+                correct(document.getElementById("Password"))
+                return true
+            }
+        }
+        
+        function error(element){
+            
+            element.setAttribute("placeholder","incorrect")
+            element.value = ""
+        }
+        
+        function correct(element){
+            element.style.border = "black"
+        }
+        
+        function btn_valider(){
+            if(testMail() && testPassword() && testMaitricule()){window.open("quiz.html");}
+        }
+            </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;400;500;700" rel="stylesheet">
+    <style>
+        :root {
+            --violet: #7451eb;
+        }
+
+        body,
+        html,
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-sizing: border-box;
+            font-size: 1.1rem;
+            font-family: 'Barlow Condensed', sans-serif;
+        }
+
+        nav {
+            height: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            gap: .7rem;
+        }
+
+        nav>span {
+            font-size: 1.75rem;
+            color: var(--violet);
+            
+            font-weight: 600;
+        }
+
+        nav>button,
+        nav>select {
+
+            padding: .7rem .5rem;
+            border-radius: .25rem;
+            outline: none;
+
+        }
+
+        nav>button {
+            background-color: transparent;
+            border: 1px solid var(--violet);
+            color: var(--violet);
+
+            font-weight: 600;
+        }
+
+        .Language {
+            margin-right: auto;
+        }
+
+        header {
+            background-color: #ece9fb;
+            display: block;
+            height: 35vh;
+            /* padding: 5rem; */
+            position: relative;
+        }
+
+        header>p{
+            font-size: 2rem;
+            font-family: sans-serif;    
+            top:50%;
+            left:50%;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        }
+        header>p:first-of-type {
+            
+            
+            transition: 
+            font-size 1s,
+            transform 1s;
+        }
+        header>p.Ennoncer{
+            color:#fefefe;
+            font-size: 1.3rem;
+            background-color: var(--violet);
+            padding: 2rem;
+            border-radius: 2rem;
+            display: none;
+        }
+        .actif{
+            top:.5rem;
+            left:1rem;
+            transform: translate(0,0);
+            font-size: 1.15rem;
+        }
+        code {
+            display: inline-block;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .question-container {
+            
+            /* padding: 0 6rem; */
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap:2rem;
+            /* margin:0 auto ; */
+            padding: 3rem 0 3rem 8rem;
+        }
+
+        .question-container>li>div>h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #b1b1b1;
+            padding: 1rem;
+        }
+        .Question-lib{
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .Proposition{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap:.75rem;
+            margin-bottom: 1.25rem;
+        }
+        .Proposition > label{
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        .Code-img{
+            display: none;
+            height: 25vh;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+        button.correction{
+            background-color: var(--violet);
+            color:#fefefe;
+            padding: 1rem 1.75rem;
+            border-radius: 1rem;
+            transition: background-color .3s;
+            width: 15%;
+            text-align: center;
+            display: block;
+            margin: 2rem auto;
+            cursor: pointer;
+
+        }
+        button.correction:hover{
+            background-color: #4629a6;
+        }
+        .img-container{
+            height: 40vh;
+            display: flex;
+            justify-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .img-container > div{
+            width: 20%;
+            height: 100%;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url(./images/Py.webp);
+            cursor: pointer;
+            transition: transform .3s;
+        }
+        .img-container > div:last-of-type{
+            background-image: url(./images/js.jpeg);
+        }
+        .img-container > div:hover{
+            transform: scale(1.1);
+        }
+        .logo{
+            position: absolute;
+            right:0;
+            bottom: 0;
+            height: 10rem;
+            width: 10rem;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url(./images/quiz.jpeg);
+            mix-blend-mode:multiply;
+            transition: background-image .3s;
+        }
+    </style>
+    <script src="./js/index.js" type="module"  defer></script>
+</head>
+
+<body>
+    <nav>
+        <span>
+            QUIZIFY
+        </span>
+
+        <select name="Language" id="Language" class="Language">
+            <option value="#">Langage</option>
+            <option value="Py">Python</option>
+            <option value="JS">JavaScript</option>
+        </select>
+
+        
+        <button> <a href="connexion.html" style="text-decoration: none;"> Se Donnecter </a></button>
+    </nav>
+    <header>
+        <div id="timer"></div>
+        <p class="slogant">Evaluer vos connaissances,la clé pour une connaissances plus solide</p>
+        <p class="Ennoncer">Choissisez la ou les réponses correctent parmi les propositions qui vous sont faites.</p>
+        <div class="logo"></div>
+        <!-- <h2>lib</h2> -->
+    </header>
+    <div class="img-container" id="img-container">
+        <div class="Py" value="Py"></div>
+        <div class="Js" value="JS"></div>
+    </div>
+
+
+    <template id="template">
+        <li>
+            <div>
+                <h2 id="question-numb">Question 1</h2>
+                <h3 id="Question-lib" class="Question-lib">
+                </h3>
+                <div class="Code-img" id="Code-img"></div>
+                
+                
+            </div>
+        </li>
+    </template>
+    <template id="propo-tmp">
+        <div class="Proposition" id = "Proposition">
+            <input type="radio" name="r1"> <label for="r1">option 1</label>
+        </div>
+    </template>
+</body>
+
+</html>
